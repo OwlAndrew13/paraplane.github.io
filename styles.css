@@ -30,10 +30,9 @@ a {
 }
 
 /* Герой секция */
-/* Герой секция */
 .hero {
     background: url('hero.jpg') no-repeat center center/cover;
-    height: 98vh; /* Уменьшили высоту */
+    height: 100vh; /* Уменьшили высоту */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,20 +52,22 @@ a {
 }
 
 /* Стрелка вниз */
-.hero::after {
-    content: "\f107"; /* Код иконки стрелки вниз в FontAwesome */
-font-family: "Font Awesome 5 Free";
-font-weight: 900;
+.scroll-arrow {
     position: absolute;
-    bottom: 20px; /* Отступ от нижнего края */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 2rem;
     color: #fff;
-    animation: bounce 2s infinite; /* Анимация стрелки */
+    animation: bounce 2s infinite;
+    cursor: pointer; /* Курсор указывает, что элемент кликабельный */
 }
 
-/* Анимация стрелки */
+.scroll-arrow i {
+    font-size: 2rem; /* Размер иконки */
+    color: #fff; /* Цвет иконки */
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateX(-50%) translateY(0);
