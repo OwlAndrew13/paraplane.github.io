@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.scrollY > 50) {
             header.style.backgroundColor = 'rgba(30, 30, 30, 0.9)'; /* Полупрозрачный фон */
         } else {
-            header.style.backgroundColor = '#1e1e1e'; /* Полностью непрозрачный фон */
+            header.style.backgroundColor = '#121212'; /* Полностью непрозрачный фон */
         }
     });
 });
