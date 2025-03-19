@@ -33,7 +33,7 @@ a {
 /* Герой секция */
 .hero {
     background: url('hero.jpg') no-repeat center center/cover;
-    height: 80vh; /* Уменьшили высоту */
+    height: 98vh; /* Уменьшили высоту */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +54,9 @@ a {
 
 /* Стрелка вниз */
 .hero::after {
-    content: "▼"; /* Символ стрелки */
+    content: "\f107"; /* Код иконки стрелки вниз в FontAwesome */
+font-family: "Font Awesome 5 Free";
+font-weight: 900;
     position: absolute;
     bottom: 20px; /* Отступ от нижнего края */
     left: 50%;
