@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (heroSection) {
         heroSection.addEventListener('click', () => {
             window.scrollBy({
-                top: window.innerHeight - 120, // Прокрутка на высоту экрана минус высота header
+                top: window.innerHeight - 50, // Прокрутка на высоту экрана минус высота header
                 behavior: 'smooth' // Плавная прокрутка
             });
         });
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(30, 30, 30, 0.9)'; /* Полупрозрачный фон */
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; /* Полупрозрачный фон */
         } else {
             header.style.backgroundColor = '#121212'; /* Полностью непрозрачный фон */
         }
