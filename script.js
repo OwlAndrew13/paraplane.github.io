@@ -14,3 +14,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+// script.js
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.main-header');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.style.backgroundColor = 'rgba(30, 30, 30, 0.9)'; /* Полупрозрачный фон */
+        } else {
+            header.style.backgroundColor = '#1e1e1e'; /* Полностью непрозрачный фон */
+        }
+    });
+});

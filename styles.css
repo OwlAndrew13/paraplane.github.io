@@ -1,3 +1,69 @@
+/* Общие стили для шапки */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #1e1e1e; /* Темный фон */
+    position: fixed; /* Фиксированная шапка */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Шапка поверх других элементов */
+}
+
+/* Логотип и название */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между логотипом и текстом */
+}
+
+.logo img {
+    height: 40px; /* Высота логотипа */
+    width: auto;
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Навигационные ссылки */
+.nav-links {
+    display: flex;
+    gap: 20px; /* Расстояние между ссылками */
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #1e90ff; /* Цвет при наведении */
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+}
 /* Общие стили */
 body {
     font-family: Arial, sans-serif;
