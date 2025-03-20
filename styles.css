@@ -65,27 +65,6 @@
     margin-right: 4px; /* Отступ между иконкой и текстом */
 }
 
-
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
-    .main-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-    }
-
-    .nav-links {
-        flex-direction: column; /* Кнопки в столбик на мобильных */
-        gap: 10px;
-    }
-
-    .nav-btn {
-        width: 100%; /* Кнопки на всю ширину */
-        text-align: center;
-    }
-}
-
-
 /* Общие стили */
 body {
     font-family: Arial, sans-serif;
@@ -350,4 +329,130 @@ a {
 
 .social-links a:hover {
     text-decoration: underline;
+}
+
+
+
+
+
+
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column; /* Элементы в столбик */
+        align-items: center; /* Центрирование */
+        padding: 10px;
+    }
+
+    .logo {
+        margin-bottom: 10px; /* Отступ между логотипом и кнопками */
+    }
+
+    .nav-links {
+        flex-direction: column; /* Кнопки в столбик */
+        gap: 10px; /* Отступ между кнопками */
+    }
+
+    .nav-btn {
+        width: 100%; /* Кнопки на всю ширину */
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 2rem; /* Уменьшаем размер заголовка */
+    }
+
+    .hero-content p {
+        font-size: 1.2rem; /* Уменьшаем размер текста */
+    }
+
+    .btn {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+
+    .scroll-arrow {
+        font-size: 1.5rem; /* Уменьшаем размер стрелки */
+    }
+    .about h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .about p {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+
+    .about img {
+        width: 100%; /* Изображение на всю ширину */
+        margin-top: 10px;
+    }
+    .services h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .service-item {
+        padding: 15px; /* Уменьшаем отступы */
+        margin-bottom: 15px;
+    }
+
+    .service-item h3 {
+        font-size: 1.2rem; /* Уменьшаем размер заголовка услуги */
+    }
+
+    .service-item p {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+    .gallery h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .gallery-images {
+        flex-direction: column; /* Изображения в столбик */
+        align-items: center; /* Центрирование */
+    }
+
+    .gallery-images img {
+        max-width: 100%; /* Изображения на всю ширину */
+        margin-bottom: 10px;
+    }
+    .testimonials h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .testimonial-item {
+        padding: 15px; /* Уменьшаем отступы */
+        margin-bottom: 15px;
+    }
+
+    .testimonial-item p {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+    .contact h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .contact form {
+        width: 100%; /* Форма на всю ширину */
+    }
+
+    .contact input, .contact textarea {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+
+    .contact button {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+    .footer {
+        flex-direction: column; /* Элементы в столбик */
+        align-items: center; /* Центрирование */
+    }
+
+    .social-links {
+        margin-top: 10px; /* Отступ между текстом и ссылками */
+    }
+
+    .social-links a {
+        font-size: 0.9rem; /* Уменьшаем размер текста */
+    }
 }
