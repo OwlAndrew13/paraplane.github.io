@@ -1,14 +1,10 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
-    // Находим элемент стрелки
-    const arrow = document.querySelector('.hero::after');
-
-    // Если стрелка кликабельна (например, если это отдельный элемент, а не псевдоэлемент)
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.addEventListener('click', () => {
+    const arrow = document.querySelector('.scroll-arrow');
+    if (arrow) {
+        arrow.addEventListener('click', () => {
             window.scrollBy({
-                top: window.innerHeight - 50, // Прокрутка на высоту экрана минус высота header
+                top: window.innerHeight - 80, // Прокрутка на высоту экрана минус высота header
                 behavior: 'smooth' // Плавная прокрутка
             });
         });
