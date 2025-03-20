@@ -1,15 +1,15 @@
-/* Общие стили для шапки */
+/* Шапка */
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #121212; /* Темный фон */
+    background-color: #121212; /* Фон */
     position: fixed; /* Фиксированная шапка */
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Шапка поверх других элементов */
+    z-index: 1000; /* Шапка поверх всего */
 }
 
 /* Логотип и название */
@@ -47,6 +47,7 @@
     color: #1e90ff; /* Цвет при наведении */
 }
 
+
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .main-header {
@@ -64,6 +65,8 @@
         font-size: 0.9rem;
     }
 }
+
+
 /* Общие стили */
 body {
     font-family: Arial, sans-serif;
@@ -95,16 +98,16 @@ a {
     background-color: #0077cc;
 }
 
-/* Герой секция */
+/* Главная секция */
 .hero {
     background: url('hero.jpg') no-repeat center center/cover;
-    height: 100vh; /* Уменьшили высоту */
+    height: 100vh; /* Высота главной  */
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     text-align: center;
-    position: relative; /* Для позиционирования стрелки */
+    position: relative; 
 }
 
 .hero-content h1 {
@@ -183,6 +186,7 @@ a {
 
 .gallery-images {
     display: flex;
+    padding: 20px;
     justify-content: space-around;
     flex-wrap: wrap;
 }
