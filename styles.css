@@ -20,9 +20,9 @@
 }
 
 .logo img {
-    height: 60px; /* Высота логотипа */
+    height: 70px; /* Высота логотипа */
     width: auto;
-    border-radius: 35%;
+    border-radius: 25%;
 }
 
 .logo span {
@@ -194,7 +194,7 @@ a {
     height: 60px;
     top: 20%;
     left: -200px;
-    animation: moveCloud 20s linear infinite;
+    animation: moveCloud 17s linear infinite;
     animation-delay: 0s; /* Первое облако без задержки */
 }
 
@@ -212,14 +212,14 @@ a {
     height: 70px;
     top: 60%;
     left: -250px;
-    animation: moveCloud 25s linear infinite;
-    animation-delay: 10s; /* Третье облако с задержкой */
+    animation: moveCloud 22s linear infinite;
+    animation-delay: 2s; /* Третье облако с задержкой */
 }
 
 /* Анимация движения облаков */
 @keyframes moveCloud {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(-10%);
         opacity: 0; /* Облако полностью прозрачное в начале */
     }
     10% {
