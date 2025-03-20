@@ -16,7 +16,6 @@
 .logo {
     display: flex;
     align-items: center;
-    font-family: century-gothic, sans-serif;
     gap: 10px; /* Расстояние между логотипом и текстом */
 }
 
@@ -28,25 +27,42 @@
 
 .logo span {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 400;
+    font-family: century-gothic, sans-serif;
+    font-style: normal;
     color: #121212;
 }
-
-/* Навигационные ссылки */
-.nav-links {
-    display: flex;
-    gap: 20px; /* Расстояние между ссылками */
-}
-
-.nav-links a {
-    color: #121212;
-    text-decoration: none;
+/* Стили для кнопок навигации */
+.nav-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    background: linear-gradient(45deg, #1e90ff, #0077cc); /* Градиентный фон */
+    color: #fff; /* Белый текст */
+    border: none; /* Убираем границу */
+    border-radius: 25px; /* Закругленные углы */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-family: century-gothic, sans-serif;
+    font-style: normal;
     font-size: 1rem;
-    transition: color 0.3s;
+    font-weight: 400; /* Полужирный текст */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+    transition: all 0.3s ease; /* Плавные переходы */
+    cursor: pointer; /* Курсор в виде указателя */
 }
 
-.nav-links a:hover {
-    color: #1e90ff; /* Цвет при наведении */
+.nav-btn:hover {
+    background: linear-gradient(45deg, #0077cc, #1e90ff); /* Инвертированный градиент */
+    transform: translateY(-3px); /* Легкий подъем */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Увеличенная тень */
+}
+
+.nav-btn:active {
+    transform: translateY(0); /* Возврат в исходное положение при нажатии */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Уменьшенная тень */
+}
+
+.nav-btn i {
+    margin-right: 4px; /* Отступ между иконкой и текстом */
 }
 
 
@@ -59,12 +75,13 @@
     }
 
     .nav-links {
-        margin-top: 10px;
+        flex-direction: column; /* Кнопки в столбик на мобильных */
         gap: 10px;
     }
 
-    .nav-links a {
-        font-size: 0.9rem;
+    .nav-btn {
+        width: 100%; /* Кнопки на всю ширину */
+        text-align: center;
     }
 }
 
@@ -79,6 +96,9 @@ body {
 }
 
 h1, h2, h3 {
+    font-family: century-gothic, sans-serif;
+    font-weight: 400;
+    font-style: normal;
     color: #121212;
 }
 
@@ -87,17 +107,25 @@ a {
     color: #1e90ff;
 }
 
-.btn {
+.bookbtn {
     display: inline-block;
     padding: 10px 20px;
     background-color: #1e90ff;
+    font-family: century-gothic, sans-serif;
+    font-weight: 400;
+    font-style: normal;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background-color 0.3s;
 }
 
-.btn:hover {
+.bookbtn:hover {
     background-color: #0077cc;
+}
+
+.bookbtn i {
+    margin-right: 4px;
+    margin-left: 4px;
 }
 
 /* Главная секция */
@@ -135,7 +163,7 @@ a {
 }
 
 .scroll-arrow i {
-    font-size: 2rem; /* Размер иконки */
+    font-size: 3rem; /* Размер иконки */
     color: #121212; /* Цвет иконки */
 }
 
@@ -201,7 +229,7 @@ a {
         opacity: 0.8; /* Остается видимым */
     }
     100% {
-        transform: translateX(100vw);
+        transform: translateX(98vw);
         opacity: 0; /* Исчезает плавно */
     }
 }
