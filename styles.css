@@ -47,6 +47,7 @@
     font-weight: 400; /* Полужирный текст */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
     transition: all 0.3s ease; /* Плавные переходы */
+    align-items: center;
     cursor: pointer; /* Курсор в виде указателя */
 }
 
@@ -63,7 +64,13 @@
 
 .nav-btn i {
     margin-right: 4px; /* Отступ между иконкой и текстом */
+    font-size: 1.2rem;
 }
+
+.btn-text {
+    display: inline; /* Текст отображается в обычной версии */
+}
+
 
 /* Общие стили */
 body {
@@ -340,23 +347,49 @@ a {
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .main-header {
-        flex-direction: column; /* Элементы в столбик */
-        align-items: center; /* Центрирование */
-        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
     }
 
     .logo {
-        margin-bottom: 10px; /* Отступ между логотипом и кнопками */
+        width: 50%; /* Логотип занимает 50% ширины */
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo img {
+        height: 60px; /* Уменьшаем размер логотипа */
+        width: auto;
+        border-radius: 40%;
+    }
+
+    .logo span {
+        font-size: 1.1rem; /* Уменьшаем размер текста */
     }
 
     .nav-links {
-        flex-direction: column; /* Кнопки в столбик */
-        gap: 10px; /* Отступ между кнопками */
+        padding-right: 1px;
+        display: flex;
+        gap: 5px; /* Отступ между кнопками */
     }
 
     .nav-btn {
-        width: 100%; /* Кнопки на всю ширину */
-        text-align: center;
+        display: flex;
+        padding: 5px;
+        border-radius: 50%; /* Круглые кнопки */
+        width: 40px; /* Фиксированная ширина */
+        height: 40px; /* Фиксированная высота */
+        justify-content: center;
+    }
+
+    .btn-text {
+        display: none; /* Скрываем текст в мобильной версии */
+    }
+
+    .nav-btn i {
+        font-size: 1.3rem; /* Размер иконок */
     }
     .hero-content h1 {
         font-size: 2rem; /* Уменьшаем размер заголовка */
@@ -365,14 +398,23 @@ a {
     .hero-content p {
         font-size: 1.2rem; /* Уменьшаем размер текста */
     }
-
+    .cloud{
+        z-index: 0;
+    }
     .btn {
         padding: 8px 16px; /* Уменьшаем размер кнопки */
         font-size: 0.9rem;
     }
-
+    .bookbtn{
+        z-index: 10;
+    }
     .scroll-arrow {
         font-size: 1.5rem; /* Уменьшаем размер стрелки */
+        bottom: 70px;
+    }
+    .cloud-3{
+        z-index: 0;
+        top: 65%;
     }
     .about h2 {
         font-size: 1.8rem; /* Уменьшаем размер заголовка */
