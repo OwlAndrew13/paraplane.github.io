@@ -112,20 +112,96 @@
 
     <!-- Услуги  -->
     <section id="services" class="services">
-        <h2>Наши услуги</h2>
-        <div class="service-item">
-            <h3>Полет с инструктором</h3>
-            <p>Продолжительность: 15-20 минут. Цена: 7000 руб.</p>
+        <div class="services-container">
+            <h2>Наши услуги</h2>
+            <p class="services-subtitle">Выберите свой идеальный полёт</p>
+            
+            <div class="services-grid">
+                <!-- Карточка 1 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <i class="fas fa-parachute-box"></i>
+                    </div>
+                    <h3>Тандем-полёт</h3>
+                    <div class="price">7 000 ₽</div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 15-20 минут в небе</li>
+                        <li><i class="fas fa-check"></i> Полная экипировка</li>
+                        <li><i class="fas fa-check"></i> Видеосъёмка (опция)</li>
+                        <li><i class="fas fa-check"></i> Инструктор с ... лет опыта</li>
+                    </ul>
+                    <a href="#contact" class="card-btn">Забронировать</a>
+                </div>
+                
+                <!-- Карточка 2 -->
+                <div class="service-card popular">
+                    <div class="popular-badge">Популярно</div>
+                    <div class="card-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Подарочный сертификат</h3>
+                    <div class="price">5 000 - 15 000 ₽</div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> Электронный или печатный формат</li>
+                        <li><i class="fas fa-check"></i> Срок действия 1 год</li>
+                        <li><i class="fas fa-check"></i> Персональное поздравление</li>
+                        <li><i class="fas fa-check"></i> Доставка по РФ</li>
+                    </ul>
+                    <a href="#contact" class="card-btn">Заказать</a>
+                </div>
+                
+                <!-- Карточка 3 (пример для добавления) -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Обучение</h3>
+                    <div class="price">25 000 ₽/курс</div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> Теория + практика</li>
+                        <li><i class="fas fa-check"></i> 5 занятий с инструктором</li>
+                        <li><i class="fas fa-check"></i> Сертификат по окончании</li>
+                        <li><i class="fas fa-check"></i> Аренда оборудования</li>
+                    </ul>
+                    <a href="#contact" class="card-btn">Узнать больше</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Галерея  -->
     <section id="gallery" class="gallery">
-        <h2>Галерея</h2>
-        <div class="gallery-images">
-            <img src="" alt="Галерея 1">
-            <img src="" alt="Галерея 2">
-            <img src="" alt="Галерея 3">
+        <h2>Наши полёты в объективе</h2>
+        <p class="gallery-subtitle">Запечатлённые моменты счастья</p>
+        
+        <div class="gallery-container">
+            <button class="gallery-arrow prev-arrow" aria-label="Предыдущее фото">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="gallery-slider">
+                <div class="slider-track">
+                    <div class="slide">
+                        <img src="img/gallery1.webp" alt="Полет на параплане 1">
+                    </div>
+                    <div class="slide active">
+                        <img src="img/gallery2.webp" alt="Полет на параплане 2">
+                    </div>
+                    <div class="slide">
+                        <img src="img/gallery3.webp" alt="Полет на параплане 3">
+                    </div>
+                </div>
+            </div>
+            
+            <button class="gallery-arrow next-arrow" aria-label="Следующее фото">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="gallery-dots">
+            <span class="dot" data-index="0"></span>
+            <span class="dot active" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
         </div>
     </section>
 

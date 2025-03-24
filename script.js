@@ -24,3 +24,59 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+//Галерея
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev-arrow');
+    const nextBtn = document.querySelector('.next-arrow');
+    
+    let currentIndex = 1; // Индекс активного слайда
+    
+    // Инициализация слайдера
+    function initSlider() {
+        updateSlider();
+    }
+    
+    // Обновление слайдера
+    function updateSlider() {
+        // Скрываем все слайды
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Показываем текущий слайд
+        slides[currentIndex].classList.add('active');
+        
+        // Обновляем точки навигации
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentIndex].classList.add('active');
+    }
+    
+    // Переход к следующему слайду
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+    }
+    
+    // Переход к предыдущему слайду
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider();
+    }
+    
+    // Обработчики событий
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Навигация по точкам
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            currentIndex = index;
+            updateSlider();
+        });
+    });
+    
+    // Инициализация
+    initSlider();
+});
