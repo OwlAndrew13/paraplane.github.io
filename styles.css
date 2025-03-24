@@ -224,8 +224,6 @@ a {
 
 
 
-
-
 /* Стили для секции "О нас" */
 .about {
     background: linear-gradient(135deg, #eaf9ff 0%, #a8c9e0 100%);
@@ -460,6 +458,8 @@ a {
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
+
+    /*Шапка*/
     .main-header {
         display: flex;
         justify-content: space-between;
@@ -505,6 +505,8 @@ a {
     .nav-btn i {
         font-size: 1.3rem; /* Размер иконок */
     }
+
+    /*Главная секция*/
     .hero-content h1 {
         font-size: 2rem; /* Уменьшаем размер заголовка */
     }
@@ -530,6 +532,8 @@ a {
         z-index: 0;
         top: 65%;
     }
+
+    /*О нас*/
     .instructor-card {
         flex-direction: column;
     }
@@ -542,6 +546,8 @@ a {
     .achievements {
         justify-content: center;
     }
+
+    /*Услуги*/
     .services h2 {
         font-size: 1.8rem; /* Уменьшаем размер заголовка */
     }
@@ -558,6 +564,8 @@ a {
     .service-item p {
         font-size: 1rem; /* Уменьшаем размер текста */
     }
+
+    /*Галерея*/
     .gallery h2 {
         font-size: 1.8rem; /* Уменьшаем размер заголовка */
     }
