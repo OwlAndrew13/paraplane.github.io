@@ -225,32 +225,130 @@ a {
 
 
 
-/* О нас */
+
+/* Стили для секции "О нас" */
 .about {
-    display: flex;
-    flex-direction: row; /* Располагаем элементы в строку */
-    justify-content: space-between; /* Разделяем текст и изображение */
-    align-items: stretch; /* Выравниваем по центру по вертикали */
-    padding: 50px 20px;
-    background-color: #b3d1e6;
+    background: linear-gradient(135deg, #eaf9ff 0%, #a8c9e0 100%);
+    padding: 30px 10px;
+    color: #333;
 }
 
 .about-content {
-    flex: 1; /* Занимает доступное пространство */
-    padding-right: 20px; /* Отступ от изображения */
-    text-align: left; /* Текст по левому краю */
-    border-right: 2px solid #1e90ff;
-    padding-right: 30px;
-}
-.about-content h2{
-    text-align: center;
+    max-width: 1200px;
+    margin: 0px 200px;
 }
 
-.about img {
-    max-width: 45%; /* Уменьшаем ширину изображения */
-    height: auto;
+.instructor-card {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+    align-items: center;
+}
+
+.instructor-bio {
+    flex: 1;
+}
+
+.instructor-photo {
+    position: relative;
+    flex: 1;
+}
+
+.instructor-photo img {
+    width: 100%;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 5px solid white;
+}
+
+.tagline {
+    font-size: 1.3rem;
+    color: #1e90ff;
+    font-style: italic;
+    margin: 10px 0 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.tagline::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 150px;
+    height: 3px;
+    background: #1e90ff;
+}
+
+.achievements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(30, 144, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+.achievement-item i {
+    color: #1e90ff;
+}
+
+.main-text {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.certificate-badge {
+    position: absolute;
+    bottom: -15px;
+    right: 20px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.certificate-badge i {
+    color: gold;
+}
+
+.mission {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #1e90ff;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .instructor-card {
+        flex-direction: column;
+    }
+    
+    .instructor-photo {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    
+    .achievements {
+        justify-content: center;
+    }
 }
 
 /* Услуги */
@@ -432,17 +530,17 @@ a {
         z-index: 0;
         top: 65%;
     }
-    .about h2 {
-        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    .instructor-card {
+        flex-direction: column;
     }
-
-    .about p {
-        font-size: 1rem; /* Уменьшаем размер текста */
+    
+    .instructor-photo {
+        order: -1;
+        margin-bottom: 30px;
     }
-
-    .about img {
-        width: 100%; /* Изображение на всю ширину */
-        margin-top: 10px;
+    
+    .achievements {
+        justify-content: center;
     }
     .services h2 {
         font-size: 1.8rem; /* Уменьшаем размер заголовка */
