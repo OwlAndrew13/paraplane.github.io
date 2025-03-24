@@ -93,6 +93,8 @@ a {
     color: #1e90ff;
 }
 
+
+
 .bookbtn {
     display: inline-block;
     padding: 10px 20px;
@@ -117,7 +119,6 @@ a {
 
 /* Главная секция */
 .hero {
-    background: url('hero.jpg') no-repeat center center/cover;
     height: 100vh; /* Высота главной  */
     display: flex;
     justify-content: center;
@@ -225,7 +226,6 @@ a {
 
 
 /* О нас */
-/* О нас - новая версия */
 .about {
     display: flex;
     flex-direction: row; /* Располагаем элементы в строку */
@@ -356,6 +356,164 @@ a {
 }
 
 
+
+
+
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+    }
+
+    .logo {
+        width: 50%; /* Логотип занимает 50% ширины */
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo img {
+        height: 56px; /* Уменьшаем размер логотипа */
+        width: auto;
+        border-radius: 40%;
+    }
+
+    .logo span {
+        font-size: 1.1rem; /* Уменьшаем размер текста */
+    }
+
+    .nav-links {
+        padding-right: 1px;
+        display: flex;
+        gap: 5px; /* Отступ между кнопками */
+    }
+
+    .nav-btn {
+        display: flex;
+        padding: 5px;
+        border-radius: 50%; /* Круглые кнопки */
+        width: 35px; /* Фиксированная ширина */
+        height: 35px; /* Фиксированная высота */
+        justify-content: center;
+    }
+
+    .btn-text {
+        display: none; /* Скрываем текст в мобильной версии */
+    }
+
+    .nav-btn i {
+        font-size: 1.3rem; /* Размер иконок */
+    }
+    .hero-content h1 {
+        font-size: 2rem; /* Уменьшаем размер заголовка */
+    }
+
+    .hero-content p {
+        font-size: 1.2rem; /* Уменьшаем размер текста */
+    }
+    .cloud{
+        z-index: 0;
+    }
+    .btn {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+    .bookbtn{
+        z-index: 100;
+    }
+    .scroll-arrow {
+        font-size: 1.5rem; /* Уменьшаем размер стрелки */
+        bottom: 80px;
+    }
+    .cloud-3{
+        z-index: 0;
+        top: 65%;
+    }
+    .about h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .about p {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+
+    .about img {
+        width: 100%; /* Изображение на всю ширину */
+        margin-top: 10px;
+    }
+    .services h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .service-item {
+        padding: 15px; /* Уменьшаем отступы */
+        margin-bottom: 15px;
+    }
+
+    .service-item h3 {
+        font-size: 1.2rem; /* Уменьшаем размер заголовка услуги */
+    }
+
+    .service-item p {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+    .gallery h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .gallery-images {
+        flex-direction: column; /* Изображения в столбик */
+        align-items: center; /* Центрирование */
+    }
+
+    .gallery-images img {
+        max-width: 100%; /* Изображения на всю ширину */
+        margin-bottom: 10px;
+    }
+    .testimonials h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .testimonial-item {
+        padding: 15px; /* Уменьшаем отступы */
+        margin-bottom: 15px;
+    }
+
+    .testimonial-item p {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+    .contact h2 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .contact form {
+        width: 100%; /* Форма на всю ширину */
+    }
+
+    .contact input, .contact textarea {
+        font-size: 1rem; /* Уменьшаем размер текста */
+    }
+
+    .contact button {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+    .footer {
+        flex-direction: column; /* Элементы в столбик */
+        align-items: center; /* Центрирование */
+    }
+
+    .social-links {
+        margin-top: 10px; /* Отступ между текстом и ссылками */
+    }
+
+    .social-links a {
+        font-size: 0.9rem; /* Уменьшаем размер текста */
+    }
+}
 
 
 
