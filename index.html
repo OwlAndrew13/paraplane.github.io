@@ -206,37 +206,122 @@
     </section>
 
     <!-- Отзывы (Testimonials) -->
-    <section id="testimonials" class="testimonials">
-        <h2>Отзывы клиентов</h2>
-        <div class="testimonial-item">
-            <p>"Это было невероятно! Спасибо за такие эмоции!"</p>
-            <p>- Иван, Москва</p>
+    <section class="testimonials">
+        <div class="container">
+            <h2>Истории наших клиентов</h2>
+            <p class="subtitle">Реальные эмоции от полетов</p>
+            
+            <div class="testimonials-grid">
+                <!-- Отзыв 1 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <img src="img/client1.jpg" alt="..." class="client-photo">
+                        <div class="client-details">
+                            <h4>...</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>...</p>
+                        <div class="date">15 мая 2023</div>
+                    </div>
+                    <div class="social-proof">
+                        <i class="fab fa-instagram"></i>
+                        <span>@...</span>
+                    </div>
+                </div>
+                
+                <!-- Отзыв 2 -->
+                <div class="testimonial-card featured">
+                    <div class="featured-badge">Лучший отзыв</div>
+                    <div class="client-info">
+                        <img src="img/client2.jpg" alt="..." class="client-photo">
+                        <div class="client-details">
+                            <h4>...</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>...</p>
+                        <div class="date">...</div>
+                    </div>
+                    <video class="testimonial-video" autoplay loop muted poster="img/video-preview.jpg">
+                        <source src="video/video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
         </div>
-        <div class="testimonial-item">
-            <p>"Лучший подарок на день рождения! Обязательно вернусь!"</p>
-            <p>- Анна, Санкт-Петербург</p>
-        </div>
-    </section>
-
-    <!-- Контакты -->
-    <section id="contact" class="contact">
-        <h2>Свяжитесь</h2>
-        <form action="#" method="post">
-            <input type="text" name="name" placeholder="Ваше имя" required>
-            <input type="email" name="email" placeholder="Ваш email" required>
-            <input type="tel" name="phone" placeholder="Ваш телефон" required>
-            <textarea name="message" placeholder="Ваше сообщение" required></textarea>
-            <button type="submit">Отправить</button>
-        </form>
     </section>
 
     <!-- Подвал -->
-    <footer class="footer">
-        <p>©</p>
-        <div class="social-links">
-            <a href="#">WhatsApp</a>
-            <a href="#">YouTube</a>
-            <a href="#">Instagram</a>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Логотип и описание -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="img/Logo.webp" alt="Лети красиво - полеты на параплане">
+                    <span>Лети красиво</span>
+                </div>
+                <p class="footer-description">
+                    Незабываемые эмоции от полетов. Безопасность и профессиональный подход.
+                </p>
+            </div>
+    
+            <!-- Блок социальных сетей -->
+            <div class="social-block">
+                <h3 class="social-title">Сотсети</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://vk.com" target="_blank" class="social-icon vk">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                    <a href="https://t.me" target="_blank" class="social-icon telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <a href="https://whatsapp.com" target="_blank" class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                
+                <!-- Кнопка "Написать нам" -->
+                <a href="#contact" class="contact-btn">
+                    <i class="fab fa-whatsapp"></i> Написать нам
+                </a>
+            </div>
+    
+            <!-- Контактная информация -->
+            <div class="contacts-block">
+                <h3 class="contacts-title">Контакты</h3>
+                <ul class="contacts-list">
+                    <li><i class="fas fa-phone-alt"></i> +7 (XXX) XXX-XX-XX</li>
+                    <li><i class="fas fa-envelope"></i> info@letikrasivo.ru</li>
+                    <li><i class="fas fa-map-marker-alt"></i>...</li>
+                    <li><i class="fas fa-clock"></i>...</li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Нижняя часть подвала -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                © FlyKMV
+            </div>
         </div>
     </footer>
 </body>
