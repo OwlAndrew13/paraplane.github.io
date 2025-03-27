@@ -48,119 +48,203 @@
         font-size: 1.3rem; /* Размер иконок */
     }
 
-    /*Главная секция*/
-    .hero-content h1 {
-        font-size: 2rem; /* Уменьшаем размер заголовка */
-    }
-
-    .hero-content p {
-        font-size: 1.2rem; /* Уменьшаем размер текста */
-    }
-    .cloud{
-        z-index: 0;
-    }
-    .btn {
-        padding: 8px 16px; /* Уменьшаем размер кнопки */
-        font-size: 0.9rem;
-    }
-    .bookbtn{
-        z-index: 100;
-    }
-    .scroll-arrow {
-        font-size: 1.5rem; /* Уменьшаем размер стрелки */
-        bottom: 80px;
-    }
-    .cloud-3{
-        z-index: 0;
-        top: 65%;
-    }
 
 
-    
+/* Главная секция */
+.hero {
+    height: 90vh;
+    padding-top: 80px;
+}
+
+.hero-content {
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.bookbtn {
+    padding: 12px 20px;
+    font-size: 1rem;
+}
+
+.scroll-arrow {
+    bottom: 30px;
+}
+
+.cloud-3{
+    z-index: -1;
+}
+
+
+
     /*О нас*/
+    .about {
+        padding: 40px 15px;
+    }
+    
+    .about-content {
+        margin: 0;
+    }
+    
     .instructor-card {
         flex-direction: column;
+        gap: 20px;
     }
     
-    .instructor-photo {
-        order: -1;
-        margin-bottom: 30px;
+    .tagline {
+        font-size: 1.1rem;
     }
     
     .achievements {
-        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .mission {
+        padding: 20px;
+        margin-top: 30px;
     }
 
-    /*Услуги*/
-    .services h2 {
-        font-size: 1.8rem; /* Уменьшаем размер заголовка */
-    }
 
-    .service-item {
-        padding: 15px; /* Уменьшаем отступы */
-        margin-bottom: 15px;
-    }
+        /* Услуги */
+        .services {
+            padding: 50px 15px;
+        }
+        
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .service-card {
+            padding: 25px;
+        }
+        
+        .popular-badge {
+            right: 10px;
+            font-size: 0.7rem;
+        }
 
-    .service-item h3 {
-        font-size: 1.2rem; /* Уменьшаем размер заголовка услуги */
-    }
-
-    .service-item p {
-        font-size: 1rem; /* Уменьшаем размер текста */
-    }
 
     /*Галерея*/
-    .gallery h2 {
-        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    .gallery {
+        padding: 65px 15px;
+    }
+    
+    .gallery-slider {
+        width: 90%;
+    }
+    
+    .slide img {
+        max-height: 300px;
+    }
+    
+    .gallery-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .prev-arrow {
+        left: 0;
+    }
+    
+    .next-arrow {
+        right: 0;
     }
 
-    .gallery-images {
-        flex-direction: column; /* Изображения в столбик */
-        align-items: center; /* Центрирование */
+    
+     /* Отзывы */
+     .testimonials {
+        padding: 40px 15px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonial-card {
+        padding: 20px;
+    }
+    
+    .featured-badge {
+        right: 10px;
+        font-size: 0.7rem;
     }
 
-    .gallery-images img {
-        max-width: 100%; /* Изображения на всю ширину */
-        margin-bottom: 10px;
-    }
-    .testimonials h2 {
-        font-size: 1.8rem; /* Уменьшаем размер заголовка */
-    }
 
-    .testimonial-item {
-        padding: 15px; /* Уменьшаем отступы */
-        margin-bottom: 15px;
+    /* Подвал */
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
+    
+    .footer-brand {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .social-block {
+        align-items: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .contact-btn {
+        margin: 0 auto;
+    }
+    
+    .contacts-block {
+        text-align: center;
+    }
+    
+    .contacts-list {
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .footer-bottom {
+        margin-top: 30px;
+    }
+}
 
-    .testimonial-item p {
-        font-size: 1rem; /* Уменьшаем размер текста */
-    }
-    .contact h2 {
-        font-size: 1.8rem; /* Уменьшаем размер заголовка */
-    }
 
-    .contact form {
-        width: 100%; /* Форма на всю ширину */
-    }
 
-    .contact input, .contact textarea {
-        font-size: 1rem; /* Уменьшаем размер текста */
-    }
 
-    .contact button {
-        padding: 8px 16px; /* Уменьшаем размер кнопки */
+
+/* Дополнительные стили для очень маленьких экранов */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .bookbtn {
+        padding: 10px 15px;
         font-size: 0.9rem;
     }
-    .footer {
-        flex-direction: column; /* Элементы в столбик */
-        align-items: center; /* Центрирование */
+    
+    .service-card {
+        padding: 20px;
     }
-
-    .social-links {
-        margin-top: 10px; /* Отступ между текстом и ссылками */
-    }
-
-    .social-links a {
-        font-size: 0.9rem; /* Уменьшаем размер текста */
+    
+    .slide img {
+        max-height: 250px;
     }
 }
