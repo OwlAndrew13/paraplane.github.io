@@ -1,0 +1,31 @@
+@media (max-width: 768px) {
+    /* Шапка */
+    .booking-header {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .booking-header .logo {
+        margin-bottom: 15px;
+    }
+    
+    /* Основной контент */
+    .booking-container {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+    
+    /* Шаги бронирования */
+    .booking-steps {
+        margin: 30px 0;
+    }
+    
+    .step p {
+        font-size: 0.8rem;
+    }
+    
+    /* Форма */
+    .booking-form {
+        padding: 20px;
+    }
+}
