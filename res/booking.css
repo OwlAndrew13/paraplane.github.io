@@ -8,6 +8,8 @@ body {
     line-height: 1.6;
 }
 
+a { text-decoration: none; }
+
 /* Шапка */
 .booking-header {
     display: flex;
@@ -285,59 +287,186 @@ body {
     font-weight: 500;
 }
 
-/* Подвал */
-.booking-footer {
+/* Стили подвала */
+.site-footer {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
-    padding: 30px 0 15px;
-    margin-top: 50px;
+    padding: 50px 0 0;
+    font-family: 'Century Gothic', sans-serif;
+    position: relative;
 }
 
-.footer-content {
-    max-width: 800px;
+.footer-container {
+    max-width: 1200px;
     margin: 0 auto;
-    text-align: center;
     padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
 }
 
-.footer-phone {
-    display: inline-block;
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    height: 50px;
+    width: auto;
+    margin-right: 15px;
+    border-radius: 10%;
+}
+
+.footer-logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.footer-description {
+    line-height: 1.6;
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+.social-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.social-title, .contacts-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    color: #ffffff;
+}
+
+.social-title::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 70px;
+    height: 2px;
+    background: #1e90ff;
+}
+.contacts-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: #1e90ff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.2rem;
     color: white;
-    margin: 15px 0;
-    padding: 8px 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.footer-phone:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-.footer-social {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.footer-social a {
-    color: white;
-    font-size: 1.5rem;
-    transition: all 0.3s;
-}
-
-.footer-social a:hover {
+.social-icon:hover {
     transform: translateY(-5px);
+}
+
+.instagram:hover { background: #E1306C; }
+.youtube:hover { background: #FF0000; }
+.vk:hover { background: #4C75A3; }
+.telegram:hover { background: #0088cc; }
+.whatsapp:hover { background: #25D366; }
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #25D366;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    width: fit-content;
+}
+
+.contact-btn i {
+    margin-right: 10px;
+}
+
+.contact-btn:hover {
+    background: #20b657;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.4);
+}
+
+.contacts-list {
+    list-style: none;
+    padding: 0;
+    line-height: 1.8;
+}
+
+.contacts-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contacts-list i {
+    margin-right: 12px;
+    color: #1e90ff;
+    width: 20px;
+    text-align: center;
+}
+
+.footer-bottom {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+    margin-top: 50px;
 }
 
 .footer-copyright {
     text-align: center;
-    margin-top: 30px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.7;
     font-size: 0.9rem;
-    opacity: 0.8;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    text-decoration: underline;
 }

@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бронирование полета на параплане</title>
     <link rel="stylesheet" href="booking.css">
-    <link rel="stylesheet" href="stylesformobile.css">
+    <link rel="stylesheet" href="bookingmedia.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="booking-header">
         <div class="logo">
-            <img src="img/Logo.webp" alt="Логотип">
+            <img src="../img/Logo.webp" alt="Логотип">
             <span>Летай красиво🪂</span>
         </div>
-        <a href="index.html" class="back-btn">
+        <a href="../index.html" class="back-btn">
             <i class="fas fa-arrow-left"></i>
             <span>На главную</span>
         </a>
@@ -132,20 +132,60 @@
         </form>
     </main>
 
-    <footer class="booking-footer">
-        <div class="footer-content">
-            <p>Есть вопросы? Звоните нам:</p>
-            <a href="tel:+7XXX-XXX-XX-XX" class="footer-phone">
-                <i class="fas fa-phone-alt"></i> +7 (XXX) XXX-XX-XX
-            </a>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-vk"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <footer id="footer" class="site-footer">
+        <div class="footer-container">
+            <!-- Логотип и описание -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="../img/Logo.webp" alt="Лети красиво - полеты на параплане">
+                    <span>Лети красиво</span>
+                </div>
+                <p class="footer-description">
+                    Незабываемые эмоции от полетов. Безопасность и профессиональный подход.
+                </p>
+            </div>
+    
+            <!-- Блок социальных сетей -->
+            <div class="social-block">
+                <h3 class="social-title">Сотсети</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://vk.com" target="_blank" class="social-icon vk">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                    <a href="https://t.me" target="_blank" class="social-icon telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <a href="https://whatsapp.com" target="_blank" class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                
+                <!-- Кнопка "Написать нам" -->
+                <a href="#contact" class="contact-btn">
+                    <i class="fab fa-whatsapp"></i> Написать мне
+                </a>
+            </div>
+    
+            <!-- Контактная информация -->
+            <div class="contacts-block">
+                <h3 class="contacts-title">Контакты</h3>
+                <ul class="contacts-list">
+                    <li><i class="fas fa-phone-alt"></i> +7 (XXX) XXX-XX-XX</li>
+                    <li><i class="fas fa-envelope"></i> info@letikrasivo.ru</li>
+                    <li><i class="fas fa-map-marker-alt"></i>...</li>
+                    <li><i class="fas fa-clock"></i>...</li>
+                </ul>
             </div>
         </div>
-        <div class="footer-copyright">
-            © Летай красиво, 2023
+    
+        <!-- Нижняя часть подвала -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                © FlyKMV
+            </div>
         </div>
     </footer>
 

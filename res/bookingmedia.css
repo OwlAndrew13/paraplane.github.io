@@ -8,11 +8,12 @@
     .booking-header .logo {
         margin-bottom: 15px;
     }
+
     
     /* Основной контент */
     .booking-container {
         padding: 0 15px;
-        margin: 20px auto;
+        margin: 60px auto;
     }
     
     /* Шаги бронирования */
@@ -28,4 +29,6 @@
     .booking-form {
         padding: 20px;
     }
+
+    
 }
