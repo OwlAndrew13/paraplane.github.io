@@ -169,7 +169,7 @@ a { text-decoration: none; }
 .form-group input,
 .form-group select,
 .form-group textarea {
-    width: 100%;
+    width: 96%;
     padding: 12px 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -233,6 +233,24 @@ a { text-decoration: none; }
     display: none;
 }
 
+/* Стили для кнопки "Назад" */
+.prev-btn {
+    background-color: #f0f0f0;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+.prev-btn.active {
+    background-color: #1e90ff;
+    color: white;
+}
+
+.prev-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+}
+
+
 /* Подтверждение бронирования */
 .confirmation-message {
     text-align: center;
@@ -286,6 +304,45 @@ a { text-decoration: none; }
     color: #555;
     font-weight: 500;
 }
+
+/* Стили для невалидных полей */
+.invalid {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2) !important;
+}
+
+.invalid-message {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.invalid + .invalid-message {
+    display: block;
+}
+
+/* Стили для неактивной кнопки "Далее" */
+.next-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #cccccc !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Стили для select при выборе значения */
+select:valid {
+    border-color: #1e90ff !important;
+}
+
+/* Стили для input при заполнении */
+input:valid {
+    border-color: #1e90ff !important;
+}
+
+
+
 
 /* Стили подвала */
 .site-footer {

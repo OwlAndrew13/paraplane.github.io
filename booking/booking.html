@@ -69,7 +69,7 @@
 
                 <div class="form-group">
                     <label for="participants">Количество человек</label>
-                    <input type="number" id="participants" min="1" max="5" value="1" required>
+                    <input type="number" id="participants" min="1" value="1" required>
                 </div>
             </div>
 
@@ -101,7 +101,7 @@
                 <div class="confirmation-message">
                     <i class="fas fa-check-circle"></i>
                     <h3>Заявка отправлена!</h3>
-                    <p>Мы свяжемся с вами в течение 2 часов для подтверждения бронирования.</p>
+                    <p>Скоро свяжемся с вами для подтверждения бронирования.</p>
                     <p>Номер вашей заявки: <strong>#PL-<span id="booking-number">0000</span></strong></p>
                 </div>
 
@@ -114,6 +114,8 @@
                         <li><strong>Количество человек:</strong> <span id="summary-participants">-</span></li>
                         <li><strong>Имя:</strong> <span id="summary-name">-</span></li>
                         <li><strong>Телефон:</strong> <span id="summary-phone">-</span></li>
+                        <li><strong>Email:</strong> <span id="summary-email">-</span></li>
+                        <li><strong>Комментарий:</strong> <span id="summary-comment">-</span></li>
                     </ul>
                 </div>
             </div>
@@ -128,6 +130,7 @@
                 <button type="submit" class="btn submit-btn">
                     <i class="fas fa-paper-plane"></i> Отправить заявку
                 </button>
+                <input type="text" name="honeypot" style="display:none;">
             </div>
         </form>
     </main>

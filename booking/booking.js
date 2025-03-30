@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initForm() {
         showStep(currentStep);
         updateButtons();
+        setupValidation();
     }
     
     // Показать текущий шаг
@@ -25,25 +26,80 @@ document.addEventListener('DOMContentLoaded', function() {
             indicator.classList.toggle('active', index === stepIndex);
         });
         
-        // Показываем/скрываем кнопки
-        if (stepIndex === 0) {
+        updateButtons();
+        
+        // Если это последний шаг - обновляем сводку
+        if (stepIndex === steps.length - 1) {
+            updateSummary();
+        }
+    }
+    
+    // Обновить состояние кнопок
+    function updateButtons() {
+        // Кнопка "Назад"
+        if (currentStep === 0) {
             prevBtn.disabled = true;
+            prevBtn.style.backgroundColor = '#f0f0f0';
+            prevBtn.style.color = '#555';
         } else {
             prevBtn.disabled = false;
+            prevBtn.style.backgroundColor = '#1e90ff';
+            prevBtn.style.color = 'white';
         }
         
-        if (stepIndex === steps.length - 1) {
+        // Кнопки "Далее" и "Отправить"
+        if (currentStep === steps.length - 1) {
             nextBtn.style.display = 'none';
             submitBtn.style.display = 'flex';
         } else {
             nextBtn.style.display = 'flex';
             submitBtn.style.display = 'none';
         }
+        
+        // Проверяем валидность текущего шага
+        checkStepValidity();
     }
     
-    // Обновить состояние кнопок
-    function updateButtons() {
-        prevBtn.disabled = currentStep === 0;
+    // Проверка валидности текущего шага
+    function checkStepValidity() {
+        const currentStepElement = steps[currentStep];
+        const requiredInputs = currentStepElement.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredInputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+            }
+        });
+        
+        // Для select проверяем, что выбран не placeholder
+        const selects = currentStepElement.querySelectorAll('select[required]');
+        selects.forEach(select => {
+            if (select.selectedIndex === 0) {
+                isValid = false;
+            }
+        });
+        
+        // Блокируем/разблокируем кнопку "Далее"
+        nextBtn.disabled = !isValid;
+        
+        // Меняем стиль кнопки
+        if (isValid) {
+            nextBtn.style.opacity = '1';
+            nextBtn.style.cursor = 'pointer';
+        } else {
+            nextBtn.style.opacity = '0.6';
+            nextBtn.style.cursor = 'not-allowed';
+        }
+    }
+    
+    // Настройка валидации
+    function setupValidation() {
+        // Проверка при изменении полей
+        form.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('input', checkStepValidity);
+            element.addEventListener('change', checkStepValidity);
+        });
     }
     
     // Переход к следующему шагу
@@ -62,31 +118,92 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Обработка отправки формы
-    function submitForm() {
-        // Здесь можно добавить AJAX-запрос или другую логику отправки
-        updateSummary();
-        nextStep();
-        
-        // Генерация номера бронирования
-        document.getElementById('booking-number').textContent = 
-            Math.floor(1000 + Math.random() * 9000);
+    //php
+    async function submitForm() {
+        // Собираем данные формы
+        const formData = {
+            flightType: document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text,
+            flightDate: formatDate(document.getElementById('flight-date').value),
+            flightTime: document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text,
+            participants: document.getElementById('participants').value,
+            fullName: document.getElementById('full-name').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            comment: document.getElementById('comment').value || 'Нет комментариев',
+            bookingNumber: 'PL-' + document.getElementById('booking-number').textContent,
+            honeypot: '' // Скрытое поле для защиты от спама
+        };
+    
+        try {
+            // Показываем индикатор загрузки
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            
+            // Отправляем данные на сервер
+            const response = await fetch('sendmail.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                // Показываем номер бронирования
+                document.getElementById('booking-number').textContent = formData.bookingNumber;
+                // Обновляем сводку
+                updateSummary(formData);
+                // Переходим на шаг подтверждения
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                alert('Ошибка: ' + result.message);
+            }
+        } catch (error) {
+            alert('Произошла ошибка при отправке: ' + error.message);
+        } finally {
+            // Восстанавливаем кнопку
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заявку';
+        }
     }
+
     
     // Обновление сводки бронирования
     function updateSummary() {
-        document.getElementById('summary-type').textContent = 
-            document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text;
-        document.getElementById('summary-date').textContent = 
-            document.getElementById('flight-date').value;
-        document.getElementById('summary-time').textContent = 
-            document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text;
-        document.getElementById('summary-participants').textContent = 
-            document.getElementById('participants').value;
-        document.getElementById('summary-name').textContent = 
-            document.getElementById('full-name').value;
-        document.getElementById('summary-phone').textContent = 
-            document.getElementById('phone').value;
+        // Получаем все введенные данные
+        document.getElementById('booking-number').textContent = Math.floor(1000 + Math.random() * 9000); 
+        const flightType = document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text;
+        const flightDate = formatDate(document.getElementById('flight-date').value);
+        const flightTime = document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text;
+        const participants = document.getElementById('participants').value;
+        const fullName = document.getElementById('full-name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const comment = document.getElementById('comment').value || 'Нет комментариев';
+        
+        // Обновляем сводку
+        document.getElementById('summary-type').textContent = flightType;
+        document.getElementById('summary-date').textContent = flightDate;
+        document.getElementById('summary-time').textContent = flightTime;
+        document.getElementById('summary-participants').textContent = participants;
+        document.getElementById('summary-name').textContent = fullName;
+        document.getElementById('summary-phone').textContent = phone;
+        document.getElementById('summary-email').textContent = email;
+        document.getElementById('summary-comment').textContent = comment;
+    }
+    
+    // Форматирование даты (из YYYY-MM-DD в DD.MM.YYYY)
+    function formatDate(dateString) {
+        if (!dateString) return 'Не указана';
+        
+        const parts = dateString.split('-');
+        if (parts.length === 3) {
+            return `${parts[2]}.${parts[1]}.${parts[0]}`;
+        }
+        return dateString;
     }
     
     // Обработчики событий
@@ -100,3 +217,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация
     initForm();
 });
+
+
+
+//php
+
