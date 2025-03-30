@@ -118,57 +118,62 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    //php
-    async function submitForm() {
-        // Собираем данные формы
-        const formData = {
-            flightType: document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text,
-            flightDate: formatDate(document.getElementById('flight-date').value),
-            flightTime: document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text,
-            participants: document.getElementById('participants').value,
-            fullName: document.getElementById('full-name').value,
-            phone: document.getElementById('phone').value,
-            email: document.getElementById('email').value,
-            comment: document.getElementById('comment').value || 'Нет комментариев',
-            bookingNumber: 'PL-' + Math.floor(1000 + Math.random() * 9000),
-            honeypot: '' // Скрытое поле для защиты от спама
-        };
+
+
+    // Обработка отправки формы
+async function submitForm() {
+    // Собираем данные формы
+    const formData = {
+        flightType: document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text,
+        flightDate: formatDate(document.getElementById('flight-date').value),
+        flightTime: document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text,
+        participants: document.getElementById('participants').value,
+        fullName: document.getElementById('full-name').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        comment: document.getElementById('comment').value || 'Нет комментариев',
+        bookingNumber: 'PL-' + Math.floor(1000 + Math.random() * 9000)
+    };
+
+    // Обновляем сводку
+    updateSummary(formData);
     
-        try {
-            // Показываем индикатор загрузки
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-            
-            // Отправляем данные на сервер
-            const response = await fetch('sendmail.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            const result = await response.json();
-            
-            if (result.success) {
-                // Показываем номер бронирования
-                document.getElementById('booking-number').textContent = formData.bookingNumber;
-                // Обновляем сводку
-                updateSummary(formData);
-                // Переходим на шаг подтверждения
-                currentStep++;
-                showStep(currentStep);
-            } else {
-                alert('Ошибка: ' + result.message);
-            }
-        } catch (error) {
-            alert('Произошла ошибка при отправке: ' + error.message);
-        } finally {
-            // Восстанавливаем кнопку
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заявку';
+    try {
+        // Показываем индикатор загрузки
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+        
+        // Отправляем данные на сервер
+        const response = await fetch('/php/sendmail.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+        body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Показываем номер бронирования
+            document.getElementById('booking-number').textContent = formData.bookingNumber;
+            // Переходим на шаг подтверждения
+            currentStep++;
+            showStep(currentStep);
+        } else {
+            alert('Ошибка: ' + result.message);
         }
+    } catch (error) {
+        alert('Произошла ошибка при отправке: ' + error.message);
+    } finally {
+        // Восстанавливаем кнопку
+        nextBtn.disabled = false;
+        nextBtn.innerHTML = 'Далее <i class="fas fa-arrow-right"></i>';
     }
+}
+
+
+
 
     
     // Обновление сводки бронирования
@@ -217,8 +222,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация
     initForm();
 });
-
-
-
-//php
-
