@@ -120,53 +120,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     //php
     async function submitForm() {
-        // Собираем данные формы
         const formData = {
-            flightType: document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text,
-            flightDate: formatDate(document.getElementById('flight-date').value),
-            flightTime: document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text,
-            participants: document.getElementById('participants').value,
-            fullName: document.getElementById('full-name').value,
-            phone: document.getElementById('phone').value,
             email: document.getElementById('email').value,
-            comment: document.getElementById('comment').value || 'Нет комментариев',
-            bookingNumber: 'PL-' + document.getElementById('booking-number').textContent,
-            honeypot: '' // Скрытое поле для защиты от спама
+            phone: document.getElementById('phone').value
         };
     
         try {
-            // Показываем индикатор загрузки
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-            
-            // Отправляем данные на сервер
-            const response = await fetch('sendmail.php', {
+            const response = await fetch('https://glitch.com/edit/#!/luminous-lucky-root?path=booking%2Fsendmail.php%3A19%3A46', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
-            
             const result = await response.json();
-            
-            if (result.success) {
-                // Показываем номер бронирования
-                document.getElementById('booking-number').textContent = formData.bookingNumber;
-                // Обновляем сводку
-                updateSummary(formData);
-                // Переходим на шаг подтверждения
-                currentStep++;
-                showStep(currentStep);
-            } else {
-                alert('Ошибка: ' + result.message);
-            }
+            alert(result.success ? 'Успешно!' : 'Ошибка: ' + result.message);
         } catch (error) {
-            alert('Произошла ошибка при отправке: ' + error.message);
-        } finally {
-            // Восстанавливаем кнопку
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заявку';
+            alert('Ошибка сети: ' + error.message);
         }
     }
 
