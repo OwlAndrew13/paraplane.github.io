@@ -121,56 +121,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Обработка отправки формы
-async function submitForm() {
-    // Собираем данные формы
-    const formData = {
-        flightType: document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text,
-        flightDate: formatDate(document.getElementById('flight-date').value),
-        flightTime: document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text,
-        participants: document.getElementById('participants').value,
-        fullName: document.getElementById('full-name').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        comment: document.getElementById('comment').value || 'Нет комментариев',
-        bookingNumber: 'PL-' + Math.floor(1000 + Math.random() * 9000)
-    };
-
-    // Обновляем сводку
-    updateSummary(formData);
-    
-    try {
-        // Показываем индикатор загрузки
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+    async function submitForm(e) {
+        e.preventDefault();
         
-        // Отправляем данные на сервер
-        const response = await fetch('/php/sendmail.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-        body: JSON.stringify(formData)
-        });
+        // Собираем данные формы
+        const formData = new FormData(form);
         
-        const result = await response.json();
+        // Добавляем дополнительные поля, которые не в FormData
+        formData.append('flightType', document.getElementById('flight-type').value);
+        formData.append('flightDate', document.getElementById('flight-date').value);
+        formData.append('flightTime', document.getElementById('flight-time').value);
+        formData.append('participants', document.getElementById('participants').value);
+        formData.append('fullName', document.getElementById('full-name').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('comment', document.getElementById('comment').value);
         
-        if (result.success) {
-            // Показываем номер бронирования
-            document.getElementById('booking-number').textContent = formData.bookingNumber;
-            // Переходим на шаг подтверждения
-            currentStep++;
-            showStep(currentStep);
-        } else {
-            alert('Ошибка: ' + result.message);
+        try {
+            const response = await fetch('php/sendmail.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.text();
+            
+            if (result.trim() === 'OK') {
+                // Успешная отправка
+                document.getElementById('booking-number').textContent = 
+                    'PL-' + Math.floor(1000 + Math.random() * 9000);
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                throw new Error(result.startsWith('ERROR:') ? result : 'Неизвестная ошибка сервера');
+            }
+        } catch (error) {
+            console.error('Ошибка отправки:', error);
+            alert('Ошибка при отправке формы: ' + error.message);
         }
-    } catch (error) {
-        alert('Произошла ошибка при отправке: ' + error.message);
-    } finally {
-        // Восстанавливаем кнопку
-        nextBtn.disabled = false;
-        nextBtn.innerHTML = 'Далее <i class="fas fa-arrow-right"></i>';
     }
-}
 
 
 

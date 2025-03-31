@@ -1,35 +1,46 @@
 <?php
-header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
+header('Content-Type: text/plain');
 
-// Настройки
-$toEmail = 'grafrus26@yandex.ru'; // Ваш реальный email
-$subject = 'Новая заявка на полет от ' . date('d.m.Y H:i');
-
-// Получаем данные
-$data = json_decode(file_get_contents('php://input'), true);
-
-// Проверка данных
-if(empty($data)) {
-    echo json_encode(['success' => false, 'message' => 'Нет данных']);
-    exit;
+// Проверка на спам (honeypot)
+if (!empty($_POST['honeypot'])) {
+    die("ERROR: Спам-заявка");
 }
 
-// Формируем письмо
-$message = "<h2>Детали заявки:</h2>";
-foreach($data as $key => $value) {
-    $message .= "<p><strong>" . htmlspecialchars($key) . ":</strong> " . htmlspecialchars($value) . "</p>";
+// Проверка обязательных полей
+$required = ['phone', 'fullName', 'flightType', 'flightDate'];
+foreach ($required as $field) {
+    if (empty($_POST[$field])) {
+        die("ERROR: Не заполнено обязательное поле: $field");
+    }
 }
 
-// Заголовки
-$headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/html; charset=utf-8\r\n";
-$headers .= "From: Летай красиво <no-reply@paragliding.local>\r\n";
-
-// Отправка
-if(mail($toEmail, $subject, $message, $headers)) {
-    echo json_encode(['success' => true, 'message' => 'Заявка отправлена!']);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Ошибка отправки']);
+// Фильтрация данных
+$data = [];
+foreach ($_POST as $key => $value) {
+    $data[$key] = htmlspecialchars(strip_tags(trim($value)));
 }
+
+// Формирование письма
+$message = "Новая заявка на полёт\n\n";
+$message .= "Тип полёта: " . $data['flightType'] . "\n";
+$message .= "Дата: " . $data['flightDate'] . "\n";
+$message .= "Время: " . ($data['flightTime'] ?? 'не указано') . "\n";
+$message .= "Количество человек: " . ($data['participants'] ?? 1) . "\n";
+$message .= "Имя: " . $data['fullName'] . "\n";
+$message .= "Телефон: " . $data['phone'] . "\n";
+$message .= "Email: " . ($data['email'] ?? 'не указан') . "\n";
+$message .= "Комментарий: " . ($data['comment'] ?? 'нет') . "\n";
+
+// Логирование (для отладки)
+file_put_contents(__DIR__ . '/mail_log.txt', date('Y-m-d H:i:s') . "\n" . $message . "\n\n", FILE_APPEND);
+
+// Отправка письма
+$to = 'ваша_почта@example.com'; // Замените на ваш email
+$subject = 'Новая заявка на полёт';
+$headers = "From: no-reply@yourdomain.com\r\n";
+$headers .= "Reply-To: " . ($data['email'] ?? 'no-reply@yourdomain.com') . "\r\n";
+
+$sent = mail($to, $subject, $message, $headers);
+
+echo $sent ? "OK" : "ERROR: Не удалось отправить письмо";
 ?>

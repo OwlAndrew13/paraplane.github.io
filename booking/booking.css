@@ -453,6 +453,7 @@ input:valid {
 .vk:hover { background: #4C75A3; }
 .telegram:hover { background: #0088cc; }
 .whatsapp:hover { background: #25D366; }
+.twogis:hover { background: #2eff7b; }
 
 .contact-btn {
     display: inline-flex;
