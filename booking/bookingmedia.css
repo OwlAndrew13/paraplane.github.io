@@ -30,5 +30,43 @@
         padding: 20px;
     }
 
+    /* Подвал */
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
     
+    .footer-brand {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .social-block {
+        align-items: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .contact-btn {
+        margin: 0 auto;
+    }
+    
+    .contacts-block {
+        text-align:start;
+    }
+    
+    .contacts-list {
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .footer-bottom {
+        margin-top: 30px;
+    }
 }
