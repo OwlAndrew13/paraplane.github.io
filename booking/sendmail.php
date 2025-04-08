@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
 // Настройки
-$toEmail = 'ваш_email@gmail.com'; // Замените на ваш реальный email
+$toEmail = 'grafrus26@yandex.ru'; // Замените на ваш реальный email
 $subject = 'Новая заявка на полет с сайта';
 
 // Получаем JSON-данные из запроса

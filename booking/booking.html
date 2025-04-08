@@ -39,7 +39,8 @@
             </div>
         </div>
 
-        <form class="booking-form">
+        <form method="POST" class="booking-form">
+            <input type="hidden" name="access_key" value="00e38ce8-921c-473b-a443-c3685a9945dd">
             <!-- Шаг 1: Выбор даты -->
             <div class="form-step active" data-step="1">
                 <div class="form-group">
@@ -87,7 +88,7 @@
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" required placeholder="example@mail.com">
+                    <input type="email" id="email" required placeholder="example@mail.com" >
                 </div>
 
                 <div class="form-group">
@@ -127,7 +128,7 @@
                 <button type="button" class="btn next-btn">
                     Далее <i class="fas fa-arrow-right"></i>
                 </button>
-                <button type="submit" class="btn submit-btn">
+                <button type="submit" value="Send data" name="Send" class="btn submit-btn" >
                     <i class="fas fa-paper-plane"></i> Отправить заявку
                 </button>
                 <input type="text" name="honeypot" style="display:none;">
