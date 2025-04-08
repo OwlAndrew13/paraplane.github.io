@@ -122,23 +122,27 @@ document.addEventListener('DOMContentLoaded', function() {
     //php
     async function submitForm() {
         let data = {
-            type: document.getElementById("summary-type").value,
-            date: document.getElementById("summary-date").value,
-            time: document.getElementById("summary-time").value,
-            count: document.getElementById("summary-participants").value,
-            name: document.getElementById("summary-name").value,
-            phone: document.getElementById("summary-phone").value,
-            email: document.getElementById("summary-email").value,
-            comm: document.getElementById("summary-comment").value
-
+            type: document.getElementById("flight-type").value,
+            date: document.getElementById("flight-date").value,
+            time: document.getElementById("flight-time").value,
+            count: document.getElementById("participants").value,
+            name: document.getElementById("full-name").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+            comm: document.getElementById("comment").value
         }
-        comsole.log(data);
+
+        let responce = await fetch("php/mail.php",{
+            method: "POST", 
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            }
+        });
+        let result = await responce.text();
+        alert(result)
     }
 
-
-
-
-    
     // Обновление сводки бронирования
     function updateSummary() {
         // Получаем все введенные данные

@@ -41,16 +41,16 @@
 
         <form method="POST" class="booking-form">
             <input type="hidden" name="access_key" value="00e38ce8-921c-473b-a443-c3685a9945dd">
-            
+
             <!-- Шаг 1: Выбор даты -->
             <div class="form-step active" data-step="1">
                 <div class="form-group">
                     <label for="flight-type">Тип полёта</label>
                     <select id="flight-type" name="flightType" required>
                         <option value="" disabled selected>Выберите тип</option>
-                        <option value="tandem">Тандем-полёт (20 мин)</option>
-                        <option value="extended">Продлённый полёт (30 мин)</option>
-                        <option value="photo">Полёт с фотосъёмкой</option>
+                        <option value="Тандем">Тандем-полёт (20 мин)</option>
+                        <option value="Продленный">Продлённый полёт (30 мин)</option>
+                        <option value="Полет с фото">Полёт с фотосъёмкой</option>
                     </select>
                 </div>
 
@@ -137,6 +137,9 @@
         </form>
     </main>
 
+
+
+    
     <footer id="footer" class="site-footer">
         <div class="footer-container">
             <!-- Логотип и описание -->
@@ -199,6 +202,6 @@
         </div>
     </footer>
 
-    <script src="booking.js"></script>
+    <script type="module" src="booking.js"></script>
 </body>
 </html>
