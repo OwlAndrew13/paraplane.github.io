@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+
     //php
     async function submitForm() {
         let data = {
@@ -129,10 +130,13 @@ document.addEventListener('DOMContentLoaded', function() {
             phone: document.getElementById("summary-phone").value,
             email: document.getElementById("summary-email").value,
             comm: document.getElementById("summary-comment").value
-        }
 
+        }
         comsole.log(data);
     }
+
+
+
 
     
     // Обновление сводки бронирования
@@ -181,6 +185,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация
     initForm();
 });
-
-
-//4zyXFyey
