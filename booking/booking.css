@@ -165,7 +165,9 @@ a { text-decoration: none; }
     font-weight: 500;
     color: #2c3e50;
 }
-
+.form-group date{
+    width: 90px;
+}
 .form-group input,
 .form-group select,
 .form-group textarea {

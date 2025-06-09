@@ -1,0 +1,12 @@
+
+<h2>Новая заявка на полет</h2>
+<p><strong>Имя:</strong> Федорченко Андрей</p>
+<p><strong>Тип полета:</strong> Тандем</p>
+<p><strong>Дата:</strong> 2025-06-04</p>
+<p><strong>Время:</strong> day</p>
+<p><strong>Количество человек:</strong> 1</p>
+<p><strong>Телефон:</strong> +7 (898) 898-89-89</p>
+<p><strong>Email:</strong> grafrus26@gmail.com</p>
+<p><strong>Комментарий:</strong> </p>
+
+Ошибка: SMTP Error: Could not connect to SMTP host.

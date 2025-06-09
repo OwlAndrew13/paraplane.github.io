@@ -1,126 +1,94 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Элементы формы
     const form = document.querySelector('.booking-form');
     const steps = document.querySelectorAll('.form-step');
     const stepIndicators = document.querySelectorAll('.step');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     const submitBtn = document.querySelector('.submit-btn');
-    
+
     let currentStep = 0;
-    
-    // Инициализация формы
+
     function initForm() {
         showStep(currentStep);
         updateButtons();
         setupValidation();
     }
-    
-    // Показать текущий шаг
+
     function showStep(stepIndex) {
         steps.forEach((step, index) => {
             step.classList.toggle('active', index === stepIndex);
         });
-        
+
         stepIndicators.forEach((indicator, index) => {
             indicator.classList.toggle('active', index === stepIndex);
         });
-        
+
         updateButtons();
-        
-        // Если это последний шаг - обновляем сводку
-        if (stepIndex === steps.length - 1) {
+
+        if (stepIndex === steps.length - 2) {
             updateSummary();
         }
     }
-    
-    // Обновить состояние кнопок
+
     function updateButtons() {
-        // Кнопка "Назад"
-        if (currentStep === 0) {
-            prevBtn.disabled = true;
-            prevBtn.style.backgroundColor = '#f0f0f0';
-            prevBtn.style.color = '#555';
-        } else {
-            prevBtn.disabled = false;
-            prevBtn.style.backgroundColor = '#1e90ff';
-            prevBtn.style.color = 'white';
-        }
-        
-        // Кнопки "Далее" и "Отправить"
-        if (currentStep === steps.length - 1) {
-            nextBtn.style.display = 'none';
-            submitBtn.style.display = 'flex';
-        } else {
-            nextBtn.style.display = 'flex';
-            submitBtn.style.display = 'none';
-        }
-        
-        // Проверяем валидность текущего шага
+        prevBtn.disabled = currentStep === 0;
+        prevBtn.style.backgroundColor = currentStep === 0 ? '#f0f0f0' : '#1e90ff';
+        prevBtn.style.color = currentStep === 0 ? '#555' : 'white';
+
+        nextBtn.style.display = (currentStep < steps.length - 2) ? 'flex' : 'none';
+        submitBtn.style.display = (currentStep === steps.length - 2) ? 'flex' : 'none';
+
         checkStepValidity();
     }
-    
-    // Проверка валидности текущего шага
+
     function checkStepValidity() {
         const currentStepElement = steps[currentStep];
         const requiredInputs = currentStepElement.querySelectorAll('[required]');
         let isValid = true;
-        
+
         requiredInputs.forEach(input => {
-            if (!input.value.trim()) {
-                isValid = false;
-            }
+            if (!input.value.trim()) isValid = false;
         });
-        
-        // Для select проверяем, что выбран не placeholder
+
         const selects = currentStepElement.querySelectorAll('select[required]');
         selects.forEach(select => {
-            if (select.selectedIndex === 0) {
-                isValid = false;
-            }
+            if (select.selectedIndex === 0) isValid = false;
         });
-        
-        // Блокируем/разблокируем кнопку "Далее"
+
         nextBtn.disabled = !isValid;
-        
-        // Меняем стиль кнопки
-        if (isValid) {
-            nextBtn.style.opacity = '1';
-            nextBtn.style.cursor = 'pointer';
-        } else {
-            nextBtn.style.opacity = '0.6';
-            nextBtn.style.cursor = 'not-allowed';
-        }
+        nextBtn.style.opacity = isValid ? '1' : '0.6';
+        nextBtn.style.cursor = isValid ? 'pointer' : 'not-allowed';
     }
-    
-    // Настройка валидации
+
     function setupValidation() {
-        // Проверка при изменении полей
         form.querySelectorAll('input, select, textarea').forEach(element => {
             element.addEventListener('input', checkStepValidity);
             element.addEventListener('change', checkStepValidity);
-        }); 
+        });
     }
-    
-    // Переход к следующему шагу
+
     function nextStep() {
         if (currentStep < steps.length - 1) {
             currentStep++;
             showStep(currentStep);
         }
     }
-    
-    // Переход к предыдущему шагу
+
     function prevStep() {
         if (currentStep > 0) {
             currentStep--;
             showStep(currentStep);
         }
     }
-    
 
-    //php
+    let isSubmitted = false;
+
     async function submitForm() {
+        if (isSubmitted) {
+            alert("Вы уже отправили заявку. Повторная отправка невозможна.");
+            return;
+        }
+
         let data = {
             type: document.getElementById("flight-type").value,
             date: document.getElementById("flight-date").value,
@@ -130,23 +98,60 @@ document.addEventListener('DOMContentLoaded', function() {
             phone: document.getElementById("phone").value,
             email: document.getElementById("email").value,
             comm: document.getElementById("comment").value
-        }
+        };
 
-        let responce = await fetch("php/mail.php",{
-            method: "POST", 
-            body: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
+        try {
+            const response = await fetch("php/mail.php", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8"
+                }
+            });
+
+            const result = await response.text();
+
+            if (result.includes("success")) {
+                isSubmitted = true;
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                alert("Ошибка при отправке. Ответ сервера: " + result);
             }
-        });
-        let result = await responce.text();
-        alert(result)
+        } catch (error) {
+            alert("Ошибка соединения с сервером.");
+            console.error("Ошибка отправки:", error);
+        }
     }
 
-    // Обновление сводки бронирования
+    async function sendTelegramMessage() {
+        const username = document.getElementById('tg-username').value.trim();
+        if (!username || !username.startsWith('@')) {
+            alert("Введите Telegram username в формате @username");
+            return;
+        }
+
+        try {
+            const response = await fetch("php/telegram_user_notify.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: username })
+            });
+
+            const result = await response.json();
+            if (result.status === "success") {
+                alert("Уведомление отправлено в Telegram!");
+            } else {
+                alert(result.message || "Не удалось отправить уведомление.");
+            }
+        } catch (error) {
+            alert("Ошибка при отправке Telegram-уведомления.");
+            console.error(error);
+        }
+    }
+
     function updateSummary() {
-        // Получаем все введенные данные
-        document.getElementById('booking-number').textContent = Math.floor(1000 + Math.random() * 9000); 
+        document.getElementById('booking-number').textContent = Math.floor(1000 + Math.random() * 9000);
         const flightType = document.getElementById('flight-type').options[document.getElementById('flight-type').selectedIndex].text;
         const flightDate = formatDate(document.getElementById('flight-date').value);
         const flightTime = document.getElementById('flight-time').options[document.getElementById('flight-time').selectedIndex].text;
@@ -155,8 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
         const comment = document.getElementById('comment').value || 'Нет комментариев';
-        
-        // Обновляем сводку
+
         document.getElementById('summary-type').textContent = flightType;
         document.getElementById('summary-date').textContent = flightDate;
         document.getElementById('summary-time').textContent = flightTime;
@@ -166,26 +170,24 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('summary-email').textContent = email;
         document.getElementById('summary-comment').textContent = comment;
     }
-    
-    // Форматирование даты (из YYYY-MM-DD в DD.MM.YYYY)
+
     function formatDate(dateString) {
         if (!dateString) return 'Не указана';
-        
         const parts = dateString.split('-');
-        if (parts.length === 3) {
-            return `${parts[2]}.${parts[1]}.${parts[0]}`;
-        }
-        return dateString;
+        return (parts.length === 3) ? `${parts[2]}.${parts[1]}.${parts[0]}` : dateString;
     }
-    
-    // Обработчики событий
+
     nextBtn.addEventListener('click', nextStep);
     prevBtn.addEventListener('click', prevStep);
-    form.addEventListener('submit', function(e) {
+    submitBtn.addEventListener('click', function(e) {
         e.preventDefault();
         submitForm();
     });
-    
-    // Инициализация
+
+    const tgButton = document.querySelector('.send-telegram-btn');
+    if (tgButton) {
+        tgButton.addEventListener('click', sendTelegramMessage);
+    }
+
     initForm();
 });
